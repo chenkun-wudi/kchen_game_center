@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<objects>
+	<field class="foxu.serverlist.Server" name="factory" id="serverFactory" />
+    <method ref="serverFactory" name="init">
+        <ref id="context" /> 
+    </method>
+    
+    <!-- 多组服务器-->
+	<obj class="foxu.serverlist.ServerMap" id="serverMap"/>
+	<!-- 第1组服务器 -->
+  	<obj class="foxu.serverlist.ServerGroup" id="group1">
+  		<field name="platid" declared="1">1</field>
+  		<field name="areaid" declared="1">1</field>
+  		<field name="name" declared="1">area1</field>
+	</obj>
+	<method ref="serverMap" name="addGroup"><ref id="group1"/></method>
+	
+	<!--添加服务器-->
+	<method ref="group1" name="addServers">
+		<objs class="foxu.serverlist.Server">
+			<!-- test=true 为测试服 -->
+			<sample sid="0" class="foxu.serverlist.Server" serverid="131071" name="test_1" ip="172.10.70.178" port="7610" http_port="7164" test="true"/>
+			<sample sid="0" class="foxu.serverlist.Server" serverid="131070" name="test_2" ip="172.10.70.178" port="7610" http_port="7165" test="true"/>
+			
+			<sample sid="0" class="foxu.serverlist.Server" serverid="1" name="yanwei" ip="172.10.70.178" port="7610" http_port="7163"/>
+			<sample sid="0" class="foxu.serverlist.Server" serverid="2" name="chenkun" ip="172.10.70.194" port="7610" http_port="7163"/>
+			<sample sid="0" class="foxu.serverlist.Server" serverid="3" name="liaotx" ip="172.10.10.237" port="7610" http_port="7163"/>
+			<sample sid="0" class="foxu.serverlist.Server" serverid="4" name="yanwei_test" ip="172.10.70.178" port="7611" http_port="7164"/>
+			<sample sid="0" class="foxu.serverlist.Server" serverid="5" name="wxlong" ip="172.10.10.113" port="7610" http_port="7163"/>
+			<sample sid="0" class="foxu.serverlist.Server" serverid="6" name="yw_wxl" ip="172.10.70.178" port="7618" http_port="7168"/>
+			<sample sid="0" class="foxu.serverlist.Server" serverid="7" name="boss_test" ip="172.10.10.249" port="7610" http_port="7163"/>
+			<sample sid="0" class="foxu.serverlist.Server" serverid="8" name="yw_war" ip="172.10.70.178" port="7810" http_port="7263"/>
+			<sample sid="0" class="foxu.serverlist.Server" serverid="9" name="t7" ip="172.10.70.193" port="7610" http_port="7163"/>
+			<sample sid="0" class="foxu.serverlist.Server" serverid="10" name="t8" ip="172.10.70.194" port="7610" http_port="7163"/>
+			<sample sid="0" class="foxu.serverlist.Server" serverid="11" name="t9" ip="172.10.70.195" port="7610" http_port="7163"/>
+			<sample sid="0" class="foxu.serverlist.Server" serverid="12" name="t10" ip="172.10.70.180" port="7610" http_port="7163"/>
+			<sample sid="0" class="foxu.serverlist.Server" serverid="13" name="t11" ip="172.10.70.181" port="7610" http_port="7163"/>
+			<sample sid="0" class="foxu.serverlist.Server" serverid="14" name="t12" ip="172.10.70.182" port="7610" http_port="7163"/>
+			<sample sid="0" class="foxu.serverlist.Server" serverid="15" name="t13" ip="172.10.70.183" port="7610" http_port="7163"/>
+			<sample sid="0" class="foxu.serverlist.Server" serverid="16" name="t14" ip="172.10.70.184" port="7610" http_port="7163"/>
+			<sample sid="0" class="foxu.serverlist.Server" serverid="17" name="t15" ip="172.10.70.185" port="7610" http_port="7163"/>
+			<sample sid="0" class="foxu.serverlist.Server" serverid="18" name="t16" ip="172.10.70.185" port="7610" http_port="7163"/>
+			<sample sid="0" class="foxu.serverlist.Server" serverid="19" name="t17" ip="172.10.70.186" port="7610" http_port="7163"/>
+		</objs>
+	</method>
+	
+	<!--添加测式版本 -->
+	<method ref="group1" name="addTestVersions">
+		<objs class="foxu.serverlist.Version">
+			<sample sid="0" class="foxu.serverlist.Version" name="apple" ver="0.0.2" download_url="www.baidu.com" share_url="www.baidu.com"/>
+			<sample sid="0" class="foxu.serverlist.Version" name="google" ver="0.0.2" download_url="www.hao123.com" share_url="www.hao123.com"/>
+		</objs>
+	</method>
+	<!--添加正式版本 -->
+	<method ref="group1" name="addVersions">
+		<objs class="foxu.serverlist.Version">
+			<sample sid="0" class="foxu.serverlist.Version" name="apple" ver="0.0.1" download_url="www.baidu.com" share_url="www.baidu.com"/>
+			<sample sid="0" class="foxu.serverlist.Version" name="google" ver="0.0.1" download_url="www.hao123.com" share_url="www.hao123.com"/>
+		</objs>
+	</method>
+	<!-- 添加联系方式 -->
+	<method ref="group1" name="addEmails">
+		<strings separator=";">1@1.com;2@2.com</strings>
+	</method>
+	
+	<!-- =================================================================================== -->
+</objects>

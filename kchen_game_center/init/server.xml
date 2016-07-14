@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects>
+	<!--数据库-->
+	<String id="dbUSR">root</String>
+	<String id="dbPWD">123456</String>
+	<!--数据库地址-->
+	<String id="dbIP">jdbc:mysql://localhost:3306/c1_center</String>
+	
+	<!-- 中心编号 -->
+	<field class="foxu.serverlist.ServerMap" name="CENTER_ID" id="center_id">1</field>
+	
+	<!--设置http的port 游戏中心是8163 游戏服务器为7163-->
+	<field class="shelby.httpserver.HttpServer" name="DEFAULT_PORT">9163</field>
+</objects>
