@@ -1,5 +1,7 @@
 package foxu.serverlist;
 
+import mustang.io.ByteBuffer;
+
 /**
  * 服务器信息
  * 
@@ -30,6 +32,25 @@ public class Server {
 	/** 大区id */
 	int area_id;
 
+	public void bytesWriteToServer(ByteBuffer data)
+	{
+		data.writeInt(serverid);
+		data.writeUTF(ip);
+		data.writeInt(port);
+		data.writeInt(http_port);
+		data.writeByte(state);
+	}
+	
+	public void showBytesWrite(ByteBuffer data)
+	{
+		data.writeUTF(name);
+		data.writeInt(serverid);
+		data.writeUTF(ip);
+		data.writeInt(port);
+		data.writeInt(state);
+	}
+	
+	
 	public boolean isTest() {
 		return test;
 	}

@@ -53,6 +53,14 @@ public class User {
 		create_time=TimeKit.getSecondTime();
 	}
 	
+	/** 绑定角色属性 */
+	public void bindAttr(String account,String pwd)
+	{
+		this.account=account;
+		this.pwd=pwd;
+		user_type=User.USER;
+	}
+	
 	/* properties */
 	public long getId() {
 		return id;

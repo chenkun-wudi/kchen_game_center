@@ -4,5 +4,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="lib" path="app/mustang.zip"/>
 	<classpathentry kind="lib" path="app/shelby.zip"/>
+	<classpathentry kind="lib" path="app/javapns-jdk16-163.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

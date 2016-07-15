@@ -1,5 +1,7 @@
 package foxu.base;
 
+import mustang.io.ByteBuffer;
+
 /**
  * 角色简要信息
  * 
@@ -27,6 +29,35 @@ public class Player {
 	/** vip */
 	int vip;
 
+	/* methods */
+	@Override
+	public String toString()
+	{
+		StringBuffer sb=new StringBuffer();
+		sb.append("id:"+id+",");
+		sb.append("user_id:"+user_id+",");
+		sb.append("plat_id:"+plat_id+",");
+		sb.append("area_id:"+area_id+",");
+		sb.append("server_id:"+server_id+",");
+		sb.append("name:"+name+",");
+		sb.append("lv:"+lv+",");
+		sb.append("face:"+face+",");
+		sb.append("vip:"+vip);
+		return sb.toString();
+	}
+	
+	/** 显示序列化 */
+	public void bytesWrite(ByteBuffer data)
+	{
+		data.writeByte(plat_id);
+		data.writeShort(area_id);
+		data.writeInt(server_id);
+		data.writeUTF(name);
+		data.writeShort(lv);
+		data.writeShort(face);
+		data.writeByte(vip);
+	}
+	
 	/* properties */
 	public long getId() {
 		return id;

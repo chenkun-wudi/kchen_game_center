@@ -1,3 +1,198 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects>
+
+
+<!--=================唯id一文件==================================-->
+<!-- 唯一id范围选择器 -->
+<obj class="foxu.uid.UiDSelect" id="uiDSelect"/>
+
+<!-- 唯一编号文件（设备唯一id）-->
+<obj class="foxu.uid.UidFile" id="deviceUidFile">
+	<method name="setPlusUid">
+		<method name="selectMinId" ref="uiDSelect">
+			 <ref id="center_id"/>
+		</method>
+	    <method name="selectMaxId" ref="uiDSelect">
+			 <ref id="center_id"/>
+		</method>
+	</method>
+	<method name="initFile">
+		<String>../save/device_uidfile.dat</String>
+		<String>../mount/save/device_uidfile.dat</String>
+	</method>
+</obj>
+
+<!-- 设备唯一id 提供器  -->
+<obj class="foxu.uid.DeviceIdGeter" id="deviceIdGeter">
+	<method name="setUidKit">
+		<obj class="foxu.uid.UidKit">
+			<method name="setUidFile">
+				<ref id="deviceUidFile"/>
+			</method>
+		</obj>
+	</method>
+</obj>
+
+<!-- 唯一编号文件（账户唯一id）-->
+<obj class="foxu.uid.UidFile" id="userUidFile">
+	<method name="setPlusUid">
+		<method name="selectMinId" ref="uiDSelect">
+			 <ref id="center_id"/>
+		</method>
+	    <method name="selectMaxId" ref="uiDSelect">
+			 <ref id="center_id"/>
+		</method>
+	</method>
+	<method name="initFile">
+		<String>../save/user_uidfile.dat</String>
+		<String>../mount/save/user_uidfile.dat</String>
+	</method>
+</obj>
+
+<!--=======================加载器=====================================-->
+<!-- 账号加载器 -->
+<obj class="foxu.dbaccess.UserDBAccess" id="userDBAccess">
+    <method name="setGamePersistence">
+		<obj class="mustang.orm.SqlPersistence">
+			<method name="setConnectionManager"><ref id="connectionManager"/></method>
+			<method name="setTable">user</method>
+		</obj>
+    </method>
+</obj>
+
+<!-- 角色加载器 -->
+<obj class="foxu.dbaccess.PlayerDBAccess" id="playerDBAccess">
+    <method name="setGamePersistence">
+		<obj class="mustang.orm.SqlPersistence">
+			<method name="setConnectionManager"><ref id="connectionManager"/></method>
+			<method name="setTable">player</method>
+		</obj>
+    </method>
+</obj>
+
+<!-- gm加载器 -->
+<obj class="foxu.dbaccess.GmDBAccess" id="gmDBAccess">
+    <method name="setGamePersistence">
+		<obj class="mustang.orm.SqlPersistence">
+			<method name="setConnectionManager"><ref id="connectionManager"/></method>
+			<method name="setTable">gm_user</method>
+		</obj>
+    </method>
+</obj>
+
+<!--===================httpService==============================================================-->
+<obj class="shelby.httpclient.HttpPortService" id="httpService"/>
+
+<obj class="foxu.http.SeaHttpHandler" id="seaHttpHandler">
+   <method name="setHttpService"><ref id="httpService"/></method>
+</obj>
+
+<obj class="shelby.httpserver.HttpServer" id="httpServer">
+    <method name="setHttpHandler"><ref id="seaHttpHandler"/></method>
+    <method name="start"/>
+</obj>
+
+<method name="setPort" ref="httpService">
+	<value type="int">1</value>
+	<obj class="foxu.http.RegisterHttpPort" id="registerHttpPort">
+		<method name="setUserDBAccess">
+			<ref id="userDBAccess"/>
+		</method>
+		<method name="setUidKit">
+			<obj class="foxu.uid.UidKit">
+				<method name="setUidFile">
+					<ref id="userUidFile"/>
+				</method>
+			</obj>
+		</method>
+	</obj>	
+</method>
+
+<method name="setPort" ref="httpService">
+	<value type="int">2</value>
+	<obj class="foxu.http.ServerHttpPort" id="serverHttpPort">
+		<method name="setServerMap">
+			<ref id="serverMap"/>
+		</method>
+		<method name="setDeviceGeter">
+			<ref id="deviceIdGeter"/>
+		</method>
+		<method name="setUserDBaccess">
+			<ref id="userDBAccess"/>
+		</method>
+		<method name="setPlayerDBaccess">
+			<ref id="playerDBAccess"/>
+		</method>
+	</obj>	
+</method>
+
+<method name="setPort" ref="httpService">
+	<value type="int">3</value>
+	<obj class="foxu.http.UserHttpPort" id="userHttpPort">
+		<method name="setUserDBAccess">
+			<ref id="userDBAccess"/>
+		</method>
+		<method name="setPlayerDBAccess">
+			<ref id="playerDBAccess"/>
+		</method>
+		<method name="setGmDBAccess">
+			<ref id="gmDBAccess"/>
+		</method>
+	</obj>	
+</method>
+
+<method name="setPort" ref="httpService">
+	<value type="int">4</value>
+	<obj class="foxu.http.GMHttpPort" id="gmHttpPort">
+		<method name="setServerMap">
+			<ref id="serverMap"/>
+		</method>
+	</obj>	
+</method>
+
+<!--===================== 添加注册器 ==========================-->
+<obj class="foxu.register.GuestRegister" id="guestRegister"/>
+<obj class="foxu.register.UserRegister" id="userRegister"/>
+<obj class="foxu.register.BindRegister" id="bindRegister"/>
+<obj class="foxu.register.CertifyRegister" id="certifyRegister">
+	<method name="setPlayerDBAccess">
+		<ref id="playerDBAccess"/>
+	</method>
+</obj>
+
+<method name="addRegister" ref="registerHttpPort">
+	<string>certify</string>
+	<ref id="certifyRegister"/>
+</method>
+
+<method name="addRegister" ref="registerHttpPort">
+	<string>guest</string>
+	<ref id="guestRegister"/>
+</method>
+
+<method name="addRegister" ref="registerHttpPort">
+	<string>user</string>
+	<ref id="userRegister"/>
+</method>
+
+<method name="addRegister" ref="registerHttpPort">
+	<string>bind</string>
+	<ref id="bindRegister"/>
+</method>
+
+<!--===================== 添加账户获取器 ==========================-->
+<obj class="foxu.usergeter.GuestGeter" id="guestGeter"/>
+<obj class="foxu.usergeter.UserGeter" id="userGeter"/>
+
+<method name="addGeter" ref="userHttpPort">
+	<string>guest</string>
+	<ref id="guestGeter"/>
+</method>
+
+<method name="addGeter" ref="userHttpPort">
+	<string>user</string>
+	<ref id="userGeter"/>
+</method>
+
+
 </objects>
