@@ -53,4 +53,14 @@ public class GMHttpPort implements HttpHandlerInterface{
 		return null;
 	}
 
+	/* properties */
+	public ServerMap getServerMap() {
+		return serverMap;
+	}
+
+	public void setServerMap(ServerMap serverMap) {
+		this.serverMap = serverMap;
+	}
+
+	
 }

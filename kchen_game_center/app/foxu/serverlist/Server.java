@@ -1,6 +1,8 @@
 package foxu.serverlist;
 
 import mustang.io.ByteBuffer;
+import mustang.util.Sample;
+import mustang.util.SampleFactory;
 
 /**
  * 服务器信息
@@ -8,7 +10,9 @@ import mustang.io.ByteBuffer;
  * @author kunchen
  *
  */
-public class Server {
+public class Server extends Sample{
+	/** 样本工厂 */
+	public static SampleFactory factory=new SampleFactory();
 	/** 服务器状态常量 即将开启1,维护2,推荐4,空闲8,良好16,繁忙32,爆满64 */
 	public static final int OPENLING = 1 << 0, CLOSE = 1 << 1, RECOMMEND = 1 << 2, GOOD = 1 << 3, BUSY = 1 << 4,
 			CROWD = 1 << 5;

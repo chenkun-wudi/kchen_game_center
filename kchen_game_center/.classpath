@@ -5,5 +5,12 @@
 	<classpathentry kind="lib" path="app/mustang.zip"/>
 	<classpathentry kind="lib" path="app/shelby.zip"/>
 	<classpathentry kind="lib" path="app/javapns-jdk16-163.jar"/>
+	<classpathentry kind="lib" path="app/mina-core-2.0.4.jar"/>
+	<classpathentry kind="lib" path="app/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="app/slf4j-log4j12-1.6.4.jar"/>
+	<classpathentry kind="lib" path="app/mysql-5.1.6.jar"/>
+	<classpathentry kind="lib" path="app/bsh-2.0b4.jar"/>
+	<classpathentry kind="lib" path="app/js.jar"/>
+	<classpathentry kind="lib" path="app/slf4j-api-1.6.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

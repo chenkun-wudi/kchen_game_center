@@ -1,13 +1,14 @@
 package foxu.serverlist;
 
 import mustang.io.ByteBuffer;
+import mustang.util.Sample;
 
 /**
  * 渠道版本
  * @author kunchen
  *
  */
-public class Version {
+public class Version extends Sample{
 	/** 渠道名 */
 	String name;
 	/** 渠道版本 */
